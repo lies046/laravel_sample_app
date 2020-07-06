@@ -31,7 +31,7 @@ class CreateTask extends FormRequest
 
     public function attributes()
     {
-        return[
+        return [
             'title' => 'タイトル',
             'due_date' => '期限日',
         ];

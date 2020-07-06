@@ -1,11 +1,10 @@
 <?php
+use App\Http\Requests\CreateTask;
 
 namespace App\Http\Controllers;
-
 use App\Folder;
 use App\Task;
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateTask;
 
 class TaskController extends Controller
 {
@@ -32,15 +31,15 @@ class TaskController extends Controller
     public function create(int $id, CreateTask $request)
     {
         $current_folder = Folder::find($id);
-
+    
         $task = new Task();
-        $task->title = $request-title;
+        $task->title = $request->title;
         $task->due_date = $request->due_date;
-
+    
         $current_folder->tasks()->save($task);
-
-        return redirect()->route('tasks.index',[
+    
+        return redirect()->route('tasks.index', [
             'id' => $current_folder->id,
-        ])
+        ]);
     }
 }
